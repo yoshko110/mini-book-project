@@ -7,6 +7,7 @@ const {
   updateBook,
 } = require("./controlers");
 const Books = require("../model/Books");
+const upload = require("../middleware/multer");
 const router = express.Router();
 
 router.param("_id", async (req, res, next, _id) => {
@@ -18,7 +19,7 @@ router.param("_id", async (req, res, next, _id) => {
 
 router.get("/", getAllBooks);
 router.get("/:_id", getOneBook);
-router.post("/", addNewBook);
+router.post("/", upload.single("BookImage"), addNewBook);
 router.delete("/:_id", removeBookByID);
 router.put("/:_id", updateBook);
 module.exports = router;

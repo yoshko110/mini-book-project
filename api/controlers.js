@@ -21,6 +21,10 @@ const getOneBook = async (req, res, next) => {
 };
 const addNewBook = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.BookImage = req.file.path;
+    }
+
     const Book = await Books.create(req.body);
     res.status(201).json(Book);
   } catch (error) {
@@ -29,6 +33,9 @@ const addNewBook = async (req, res, next) => {
 };
 const updateBook = async (req, res, next) => {
   try {
+    if (req.file) {
+      req.body.image = req.file.path;
+    }
     await req.book.updateOne(req.body);
     return res.status(204).end();
   } catch (error) {

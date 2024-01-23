@@ -3,6 +3,6 @@ const booksSchema = new Schema({
   BookTitle: { type: String, required: true },
   BookAuthor: { type: String, required: true },
   BookPrice: { type: Number, required: 5 },
-  BookImage: {},
+  BookImage: String,
 });
 module.exports = model("book", booksSchema);
